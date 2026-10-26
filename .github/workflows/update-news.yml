@@ -3,7 +3,7 @@ name: Update Carp News Feed
 on:
   # 30分ごとに自動実行 (UTC指定)
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 * * * *'
   # GitHubの画面から手動でも即時実行できるようにする
   workflow_dispatch:
 
