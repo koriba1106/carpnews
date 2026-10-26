@@ -1,0 +1,55 @@
+name: Update Carp News Feed
+
+on:
+  # 30分ごとに自動実行 (UTC指定)
+  schedule:
+    - cron: '*/30 * * * *'
+  # GitHubの画面から手動でも即時実行できるようにする
+  workflow_dispatch:
+
+# 多重起動の防止
+concurrency:
+  group: carp-news-updater
+  cancel-in-progress: false
+
+# 最小限の権限のみ付与（セキュリティ強化）
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, curl, simplexml, libxml, filter
+          coverage: none
+
+      - name: Run News Fetcher Script
+        run: php carpnews_cron.php
+
+      - name: Commit and Push if updated
+        run: |
+          # ロックファイルはGit管理に含めないよう削除
+          rm -f data/cron.lock
+
+          # data/news.json に変更があるかチェック
+          git add data/news.json
+          if git diff --staged --quiet; then
+            echo "ニュースの更新はありませんでした。"
+            exit 0
+          fi
+
+          # コミット＆プッシュ
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(data): update Carp news feed [skip ci]"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
