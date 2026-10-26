@@ -1,0 +1,426 @@
+/* ==========================================================================
+   広島東洋カープ ニュース速報 デザインシステム (PC・スマホ完全両対応)
+   ========================================================================== */
+:root {
+  --color-bg-base: #fcfcfc;
+  --color-bg-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-hover: #d90429;
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-tertiary: #64748b;
+  --color-text-muted: #94a3b8;
+
+  /* カープ・クリムゾンレッド配色 */
+  --color-carp-red: #d90429;
+  --color-carp-red-dark: #9b001a;
+  --color-carp-red-soft: #fff0f3;
+
+  /* バッジ配色 */
+  --badge-team-bg: #f1f5f9;
+  --badge-team-text: #334155;
+  --badge-player-bg: #ffe4e6;
+  --badge-player-text: #be123c;
+  --badge-category-bg: #fef3c7;
+  --badge-category-text: #b45309;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 10px 20px -5px rgba(217, 4, 41, 0.12);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  padding: 1.5rem 1rem 4rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ヘッダー */
+header {
+  border-bottom: 2px solid var(--color-carp-red);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.brand-title {
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.brand-title::before {
+  content: "C";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  background: var(--color-carp-red);
+  color: #ffffff;
+  font-weight: 900;
+  font-family: Georgia, serif;
+  border-radius: 50%;
+  font-size: 0.85em;
+  box-shadow: 0 2px 4px rgba(217, 4, 41, 0.3);
+}
+
+.sync-status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+}
+
+.sync-dot.error {
+  background-color: var(--color-carp-red);
+}
+
+.brand-description {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+/* 統計サマリー */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-carp-red);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.summary-label {
+  font-size: 0.72rem;
+  color: var(--color-text-tertiary);
+  font-weight: 700;
+}
+
+.summary-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--color-text-primary);
+  margin-top: 0.15rem;
+}
+
+/* 操作パネル */
+.control-deck {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-field input {
+  width: 100%;
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding: 0.65rem 0.85rem 0.65rem 2.3rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-field input:focus {
+  border-color: var(--color-carp-red);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.8rem;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.filter-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  min-width: 42px;
+  padding-top: 0.28rem;
+}
+
+.filter-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  flex: 1;
+}
+
+.chip {
+  background: var(--color-bg-base);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 0.28rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.73rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--color-carp-red);
+  color: var(--color-carp-red);
+  background-color: var(--color-carp-red-soft);
+}
+
+.chip.active {
+  background: var(--color-carp-red);
+  color: #ffffff;
+  border-color: var(--color-carp-red);
+  font-weight: 700;
+}
+
+/* ニュースカード一覧 */
+.feed-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.feed-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-carp-red);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.feed-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 1行目: タグ */
+.card-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  line-height: 1.3;
+}
+
+.badge-new { background: var(--color-carp-red); color: #ffffff; }
+.badge-team { background: var(--badge-team-bg); color: var(--badge-team-text); }
+.badge-player { background: var(--badge-player-bg); color: var(--badge-player-text); }
+.badge-category { background: var(--badge-category-bg); color: var(--badge-category-text); }
+
+/* 2行目: 表題とURL */
+.card-row-title-url {
+  margin-bottom: 0.65rem;
+}
+
+.card-headline {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin-bottom: 0.2rem;
+  word-break: break-word;
+}
+
+.feed-card:hover .card-headline {
+  color: var(--color-carp-red);
+}
+
+.card-url-text {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* 3行目: 日時・ソース元・共有ボタン */
+.card-row-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  font-size: 0.74rem;
+  color: var(--color-text-tertiary);
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.5rem;
+}
+
+.card-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-timestamp {
+  font-family: var(--font-mono);
+}
+
+.card-source {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.btn-share {
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-share:hover {
+  background: var(--color-carp-red);
+  color: #ffffff;
+  border-color: var(--color-carp-red);
+}
+
+/* トースト通知 */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--color-text-primary);
+  color: #ffffff;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.empty-placeholder {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  color: var(--color-text-tertiary);
+  font-size: 0.88rem;
+  background: var(--color-bg-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* スマホ表示向け微調整 */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 0.6rem 3rem;
+  }
+  .feed-card {
+    padding: 0.85rem 0.95rem;
+  }
+  .card-headline {
+    font-size: 0.95rem;
+  }
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    text-align: center;
+  }
+}
