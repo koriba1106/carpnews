@@ -1,6 +1,6 @@
 /* ==========================================================================
    広島東洋カープ ニュース速報 デザインシステム
-   (背景100%クリア全画面表示 ＋ 記事リード＆URL部分のみピンポイントすりガラス仕様)
+   (PC・スマホ完全全画面クリア背景 ＋ 記事リード＆URLのみピンポイントすりガラス仕様)
    ========================================================================== */
 :root {
   --color-bg-base: #1a1528;
@@ -50,6 +50,10 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-primary);
@@ -60,24 +64,37 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ==========================================================================
-   背景イラストレイヤー (ぼかし・白ベール一切なし！画面いっぱいにクリア表示)
+   背景イラストレイヤー (PC・スマホ問わず画面の端から端まで100%クリアに全画面表示)
    ========================================================================== */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   z-index: -1;
   background-image: url("bg-mascot.jpg");
   background-repeat: no-repeat;
-  /* 画面いっぱいに隙間なくクリアに表示（下部キャラ〜上部旗までバランス良く配置） */
-  background-position: center bottom;
+  /* 画面比率に関わらず隙間なく画面全体を完全に覆う */
   background-size: cover;
+  /* PC等の横長画面ではキャラクター3体（坊や・スラィリー・鯉）が中央に揃う68%位置にフォーカス */
+  background-position: center 68%;
   opacity: 1;
   pointer-events: none;
   transform: translateZ(0);
+}
+
+/* スマホ・タブレット等の縦長画面ではイラスト全体が綺麗に収まる中央配置に自動切替 */
+@media (max-aspect-ratio: 1/1) {
+  body::before {
+    background-position: center center;
+  }
 }
 
 .container {
@@ -120,7 +137,6 @@ header {
   gap: 0.55rem;
   color: #ffffff;
   letter-spacing: -0.02em;
-  /* クリアな背景イラストの上でも100%読める立体的な縁取りシャドウ */
   text-shadow: 
     0 2px 8px rgba(0, 0, 0, 0.85),
     0 0 3px rgba(0, 0, 0, 0.9);
@@ -329,7 +345,6 @@ header {
 }
 
 .feed-card {
-  /* カード全体は透明にし、背景イラストを遮らない */
   background: transparent;
   border: none;
   padding: 0;
@@ -338,7 +353,7 @@ header {
   display: block;
 }
 
-/* 1行目: タグ（すりガラスボックスの上に浮かぶバッジ） */
+/* 1行目: タグ */
 .card-row-tags {
   display: flex;
   flex-wrap: wrap;
@@ -410,7 +425,7 @@ header {
   text-underline-offset: 2px;
 }
 
-/* 3行目: 日時・ソース元・共有ボタン（コンパクトなピル表示で背景を活かす） */
+/* 3行目: 日時・ソース元・共有ボタン */
 .card-row-info {
   display: flex;
   align-items: center;
@@ -512,17 +527,11 @@ header {
 }
 
 /* ==========================================================================
-   スマホ表示向け最適化（縦長イラストを画面いっぱいに活かしつつ記事を読みやすく）
+   スマホ表示向け最適化
    ========================================================================== */
 @media (max-width: 600px) {
   body {
     padding: 0.85rem 0.65rem 3.5rem;
-  }
-
-  body::before {
-    /* スマホの縦長画面にイラストをぴったり100%フィットさせる */
-    background-size: 100% 100%;
-    background-position: center center;
   }
 
   .summary-grid {
@@ -567,7 +576,6 @@ header {
 
   .card-row-title-url {
     padding: 0.85rem 0.95rem;
-    /* スマホでも文字が確実に読めるよう、白濃度をわずかに上げる */
     background: rgba(255, 255, 255, 0.82);
   }
 
