@@ -1,31 +1,35 @@
 /* ==========================================================================
-   広島東洋カープ ニュース速報 デザインシステム
-   (PC・スマホ完全全画面クリア背景 ＋ 記事リード＆URLのみピンポイントすりガラス仕様)
+   広島東洋カープ ニュース速報 デザインシステム (プロフェッショナルUI/UX完成版)
+   - 背景イラストの左右キャラクターを活かす中央スリム設計
+   - 視認性を極限まで高めた高品位フロストガラス・カード統合モデル
    ========================================================================== */
 :root {
-  --color-bg-base: #1a1528;
+  --color-bg-base: #161224;
 
-  /* 記事リード・URL部分専用のすりガラスカラー（文字がくっきり読める高コントラスト設定） */
-  --glass-lead-bg: rgba(255, 255, 255, 0.78);
-  --glass-lead-bg-hover: rgba(255, 255, 255, 0.92);
-  --glass-lead-border: rgba(255, 255, 255, 0.85);
-  --glass-filter: blur(12px) saturate(160%);
+  /* ニュースカード用すりガラス（背景の赤みを美しく透かしつつ文字を100%くっきり読ませる黄金比） */
+  --glass-card-bg: rgba(255, 255, 255, 0.88);
+  --glass-card-bg-hover: rgba(255, 255, 255, 0.97);
+  --glass-deck-bg: rgba(15, 23, 42, 0.72);
+  --glass-border-light: rgba(255, 255, 255, 0.75);
+  --glass-blur: blur(16px) saturate(170%);
 
-  /* 文字色（すりガラス上で最も読みやすい濃紺〜黒） */
+  /* タイポグラフィ配色（純黒を避け、目に優しくコントラストの高い濃紺スレート） */
   --color-text-primary: #0f172a;
-  --color-text-secondary: #1e293b;
-  --color-text-muted: #334155;
+  --color-text-secondary: #334155;
+  --color-text-tertiary: #475569;
+  --color-text-muted: #64748b;
 
   /* カープ・クリムゾンレッド配色 */
   --color-carp-red: #d90429;
-  --color-carp-red-dark: #a3001b;
+  --color-carp-red-dark: #a30018;
+  --color-carp-red-glow: rgba(217, 4, 41, 0.35);
 
-  /* バッジ配色（背景の上で直接浮き立つよう不透明度を高めに設定） */
-  --badge-team-bg: rgba(15, 23, 42, 0.85);
+  /* バッジ配色（カード内でノイズにならない上品かつ明瞭なトーン） */
+  --badge-team-bg: #1e293b;
   --badge-team-text: #ffffff;
-  --badge-player-bg: rgba(255, 240, 243, 0.95);
+  --badge-player-bg: #ffe4e6;
   --badge-player-text: #be123c;
-  --badge-category-bg: rgba(254, 243, 199, 0.95);
+  --badge-category-bg: #fef3c7;
   --badge-category-text: #b45309;
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", sans-serif;
@@ -35,13 +39,14 @@
   --radius-md: 12px;
   --radius-lg: 16px;
 
-  --shadow-lead: 
-    0 6px 20px -2px rgba(0, 0, 0, 0.28),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  --shadow-lead-hover: 
-    0 10px 26px -2px rgba(217, 4, 41, 0.4),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
-  --shadow-pill: 0 3px 10px rgba(0, 0, 0, 0.25);
+  --shadow-card: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.32),
+    0 3px 10px -2px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --shadow-card-hover: 
+    0 16px 32px -6px rgba(217, 4, 41, 0.42),
+    0 4px 12px -2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 *, *::before, *::after {
@@ -68,7 +73,7 @@ body {
 }
 
 /* ==========================================================================
-   背景イラストレイヤー (PC・スマホ問わず画面の端から端まで100%クリアに全画面表示)
+   背景イラストレイヤー (PC・スマホともに画面いっぱいにクリア表示)
    ========================================================================== */
 body::before {
   content: "";
@@ -78,27 +83,44 @@ body::before {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  z-index: -1;
+  z-index: -2;
   background-image: url("bg-mascot.jpg");
   background-repeat: no-repeat;
-  /* 画面比率に関わらず隙間なく画面全体を完全に覆う */
   background-size: cover;
-  /* PC等の横長画面ではキャラクター3体（坊や・スラィリー・鯉）が中央に揃う68%位置にフォーカス */
-  background-position: center 68%;
-  opacity: 1;
-  pointer-events: none;
+  /* PCではカープ坊や・スラィリー・鯉が左右から顔を出すベストポジション */
+  background-position: center 65%;
+   pointer-events: none;
   transform: translateZ(0);
 }
 
-/* スマホ・タブレット等の縦長画面ではイラスト全体が綺麗に収まる中央配置に自動切替 */
+/* ★プロの工夫: 左右のイラストは100%クリアなまま、文字が乗る中央部だけコントラストを高める透過シェード */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(15, 23, 42, 0.28) 0%,
+    rgba(15, 23, 42, 0.05) 65%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
 @media (max-aspect-ratio: 1/1) {
   body::before {
     background-position: center center;
   }
 }
 
+/* 左右の背景イラスト（坊や＆鯉）がより広く見えるよう、中央カラムを740pxに最適化 */
 .container {
-  max-width: 840px;
+  max-width: 740px;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -111,13 +133,18 @@ body::before {
 }
 
 /* ==========================================================================
-   ヘッダー（背景を隠さないよう枠のすりガラスをやめ、文字をくっきり浮き立たせる）
+   ヘッダー（カープカラーの重厚なスタジアムボード風グラスデザイン）
    ========================================================================== */
 header {
-  background: transparent;
-  padding: 0.5rem 0.2rem 1.1rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(163, 0, 24, 0.88) 0%, rgba(217, 4, 41, 0.82) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  color: #ffffff;
 }
 
 .header-meta {
@@ -126,20 +153,18 @@ header {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .brand-title {
-  font-size: clamp(1.35rem, 4.5vw, 1.9rem);
+  font-size: clamp(1.25rem, 4vw, 1.65rem);
   font-weight: 900;
   display: flex;
   align-items: center;
   gap: 0.55rem;
   color: #ffffff;
-  letter-spacing: -0.02em;
-  text-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.85),
-    0 0 3px rgba(0, 0, 0, 0.9);
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 
 .brand-title::before {
@@ -149,251 +174,275 @@ header {
   justify-content: center;
   width: 1.45em;
   height: 1.45em;
-  background: var(--color-carp-red);
-  color: #ffffff;
+  background: #ffffff;
+  color: var(--color-carp-red);
   font-weight: 900;
   font-family: Georgia, serif;
   border-radius: 50%;
-  font-size: 0.85em;
-  border: 2px solid #ffffff;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  font-size: 0.88em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   text-shadow: none;
   flex-shrink: 0;
 }
 
 .sync-status {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--color-text-primary);
+  font-size: 0.72rem;
+  color: #ffffff;
   font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 0.25rem 0.7rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.22rem 0.65rem;
   border-radius: 9999px;
-  box-shadow: var(--shadow-pill);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .sync-dot {
   width: 8px;
   height: 8px;
-  background-color: #10b981;
+  background-color: #34d399;
   border-radius: 50%;
+  box-shadow: 0 0 6px #34d399;
 }
 
 .sync-dot.error {
-  background-color: var(--color-carp-red);
+  background-color: #fbbf24;
 }
 
 .brand-description {
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-shadow: 
-    0 1px 6px rgba(0, 0, 0, 0.9),
-    0 0 2px rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 /* ==========================================================================
-   統計サマリー（コンパクトな高視認ピル型）
+   統計サマリー（視認性の高いダークグラス・スコアボード風）
    ========================================================================== */
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.6rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .summary-card {
-  background: rgba(15, 23, 42, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: var(--glass-deck-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-top: 3px solid var(--color-carp-red);
   border-radius: var(--radius-md);
-  padding: 0.6rem 0.75rem;
-  box-shadow: var(--shadow-pill);
+  padding: 0.6rem 0.85rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
   color: #ffffff;
 }
 
 .summary-label {
   font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 700;
 }
 
 .summary-value {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 900;
   font-family: var(--font-mono);
   color: #ffffff;
-  margin-top: 0.1rem;
+  margin-top: 0.05rem;
+  line-height: 1.2;
 }
 
 /* ==========================================================================
-   操作パネル（背景イラストを邪魔しないよう外枠を透明化）
+   操作パネル（検索＆横スクロールフィルターで背景の露出面積を最大化）
    ========================================================================== */
 .control-deck {
-  background: transparent;
-  padding: 0.2rem 0;
-  margin-bottom: 1.4rem;
+  background: var(--glass-deck-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.35rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.6rem;
 }
 
 .search-field {
   position: relative;
   display: flex;
   align-items: center;
+  margin-bottom: 0.15rem;
 }
 
 .search-field input {
   width: 100%;
-  background: var(--glass-lead-bg);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: 1px solid var(--glass-lead-border);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   color: var(--color-text-primary);
   font-weight: 700;
-  padding: 0.7rem 0.9rem 0.7rem 2.35rem;
+  padding: 0.6rem 0.9rem 0.6rem 2.3rem;
   border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  box-shadow: var(--shadow-pill);
+  font-size: 0.88rem;
   outline: none;
   transition: all 0.2s ease;
 }
 
 .search-field input::placeholder {
   color: var(--color-text-muted);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .search-field input:focus {
-  border-color: var(--color-carp-red);
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.35), var(--shadow-pill);
+  border-color: var(--color-carp-red);
+  box-shadow: 0 0 0 3px var(--color-carp-red-glow);
 }
 
 .search-icon {
   position: absolute;
-  left: 0.85rem;
+  left: 0.8rem;
   z-index: 2;
   pointer-events: none;
 }
 
+/* フィルター行はPC・スマホともに1行横スクロールに統一し、画面の圧迫を防ぐ */
 .filter-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
 }
 
 .filter-heading {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  color: #ffffff;
-  background: rgba(15, 23, 42, 0.8);
-  padding: 0.28rem 0.55rem;
-  border-radius: var(--radius-sm);
-  min-width: 44px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  min-width: 38px;
+  flex-shrink: 0;
 }
 
 .filter-chip-group {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 0.35rem;
   flex: 1;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.filter-chip-group::-webkit-scrollbar {
+  height: 4px;
+}
+
+.filter-chip-group::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
 }
 
 .chip {
-  background: rgba(255, 255, 255, 0.88);
-  color: var(--color-text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  padding: 0.28rem 0.7rem;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0.24rem 0.68rem;
   border-radius: 9999px;
-  font-size: 0.73rem;
+  font-size: 0.72rem;
   font-family: inherit;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
   transition: all 0.15s ease;
 }
 
 .chip:hover {
-  border-color: var(--color-carp-red);
-  color: var(--color-carp-red);
-  background-color: #ffffff;
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.28);
+  border-color: #ffffff;
 }
 
 .chip.active {
   background: var(--color-carp-red);
   color: #ffffff;
   border-color: #ffffff;
-  box-shadow: 0 3px 10px rgba(217, 4, 41, 0.5);
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(217, 4, 41, 0.6);
 }
 
 /* ==========================================================================
-   ニュースフィード一覧
-   （外枠は完全クリア！記事リードとURLリンク部分だけをすりガラス化）
+   ニュースフィード一覧（1記事＝1枚のすりガラスカードに統合して圧倒的見やすさを実現）
    ========================================================================== */
 .feed-stream {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 0.85rem;
 }
 
 .feed-card {
-  background: transparent;
-  border: none;
-  padding: 0;
+  background: var(--glass-card-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border-light);
+  border-left: 6px solid var(--color-carp-red);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.2rem;
   text-decoration: none;
   color: inherit;
   display: block;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
 }
 
-/* 1行目: タグ */
+.feed-card:hover {
+  background: var(--glass-card-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* 1行目: タグ一覧 */
 .card-row-tags {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
-  margin-bottom: 0.35rem;
-  padding-left: 0.2rem;
+  margin-bottom: 0.45rem;
 }
 
 .badge {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  padding: 0.18rem 0.55rem;
+  padding: 0.14rem 0.5rem;
   border-radius: var(--radius-sm);
   line-height: 1.3;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.badge-new { background: var(--color-carp-red); color: #ffffff; border: 1px solid #ffffff; }
-.badge-team { background: var(--badge-team-bg); color: var(--badge-team-text); }
-.badge-player { background: var(--badge-player-bg); color: var(--badge-player-text); border: 1px solid rgba(190, 18, 60, 0.3); }
-.badge-category { background: var(--badge-category-bg); color: var(--badge-category-text); border: 1px solid rgba(180, 83, 9, 0.3); }
+.badge-new {
+  background: var(--color-carp-red);
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+.badge-team {
+  background: var(--badge-team-bg);
+  color: var(--badge-team-text);
+}
+.badge-player {
+  background: var(--badge-player-bg);
+  color: var(--badge-player-text);
+  border: 1px solid rgba(190, 18, 60, 0.2);
+}
+.badge-category {
+  background: var(--badge-category-bg);
+  color: var(--badge-category-text);
+  border: 1px solid rgba(180, 83, 9, 0.2);
+}
 
-/* ★ 2行目: 記事へのリード（表題）とURLリンク部分だけをすりガラス効果にする ★ */
+/* 2行目: 記事見出し（リード）とURLリンク */
 .card-row-title-url {
-  background: var(--glass-lead-bg);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: 1px solid var(--glass-lead-border);
-  border-left: 6px solid var(--color-carp-red);
-  border-radius: var(--radius-md);
-  padding: 0.95rem 1.15rem;
-  box-shadow: var(--shadow-lead);
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.feed-card:hover .card-row-title-url {
-  background: var(--glass-lead-bg-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lead-hover);
+  margin-bottom: 0.55rem;
 }
 
 .card-headline {
@@ -401,10 +450,10 @@ header {
   font-weight: 800;
   line-height: 1.5;
   color: var(--color-text-primary);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
   overflow-wrap: anywhere;
   word-break: break-word;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+  transition: color 0.15s ease;
 }
 
 .feed-card:hover .card-headline {
@@ -413,62 +462,53 @@ header {
 
 .card-url-text {
   display: block;
-  font-size: 0.72rem;
-  color: var(--color-carp-red-dark);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
-/* 3行目: 日時・ソース元・共有ボタン */
+/* 3行目: メディア名・配信日時・共有ボタン（カード下部にスッキリ整列） */
 .card-row-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.35rem;
-  padding: 0 0.2rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  font-size: 0.74rem;
 }
 
 .card-meta-left {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.6rem;
-  background: rgba(15, 23, 42, 0.78);
-  color: #ffffff;
-  padding: 0.2rem 0.65rem;
-  border-radius: 9999px;
-  font-size: 0.72rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  gap: 0.65rem;
 }
 
 .card-timestamp {
   font-family: var(--font-mono);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  color: var(--color-text-tertiary);
 }
 
 .card-source {
   font-weight: 800;
-  color: #ffffff;
+  color: var(--color-carp-red-dark);
 }
 
 .btn-share {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #ffffff;
-  color: var(--color-text-primary);
-  font-size: 0.7rem;
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  color: var(--color-text-secondary);
+  font-size: 0.68rem;
   font-weight: 800;
-  padding: 0.22rem 0.7rem;
-  border-radius: 9999px;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   transition: all 0.15s ease;
 }
 
@@ -508,12 +548,12 @@ header {
   color: var(--color-text-primary);
   font-size: 0.9rem;
   font-weight: 800;
-  background: var(--glass-lead-bg);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: 1px solid var(--glass-lead-border);
+  background: var(--glass-card-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border-light);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lead);
+  box-shadow: var(--shadow-card);
 }
 
 /* 視差効果・アニメーション抑制設定への配慮 */
@@ -531,57 +571,49 @@ header {
    ========================================================================== */
 @media (max-width: 600px) {
   body {
-    padding: 0.85rem 0.65rem 3.5rem;
+    padding: 0.75rem 0.6rem 3.5rem;
+  }
+
+  header {
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .summary-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
+    gap: 0.45rem;
+    margin-bottom: 0.75rem;
   }
 
   .summary-card {
-    padding: 0.5rem 0.65rem;
+    padding: 0.5rem 0.7rem;
   }
 
   .summary-value {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
   }
 
-  /* スマホでフィルターボタンが画面を占領しすぎないよう横スクロール可能にする */
-  .filter-row {
-    align-items: center;
-  }
-
-  .filter-chip-group {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 0.25rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .control-deck {
+    padding: 0.75rem 0.85rem;
+    margin-bottom: 1rem;
   }
 
   .filter-chip-group::-webkit-scrollbar {
     display: none;
   }
 
-  .chip {
-    flex-shrink: 0;
-    padding: 0.32rem 0.75rem;
-    font-size: 0.74rem;
-  }
-
   .feed-stream {
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
-  .card-row-title-url {
+  .feed-card {
     padding: 0.85rem 0.95rem;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.9);
   }
 
   .card-headline {
     font-size: 0.96rem;
-    line-height: 1.48;
+    line-height: 1.46;
   }
 
   .toast {
