@@ -1,18 +1,5 @@
 [
     {
-        "id": "b0dc29e9c0ca8bd6",
-        "title": "[長崎県]「カープの中心選手に」 長崎国際大 皆吉選手が仮契約",
-        "rawTitle": "[長崎県]「カープの中心選手に」 長崎国際大 皆吉選手が仮契約 - 西日本新聞me",
-        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE16VklIdGxfVmN5N016UGcyQjczVm5PaDhMMjd5Ri1oNUtheEtnajZUSHBuaDYtNGlDNHBtYk5JRFhKN1l4NUhyazUzOXNXNDFrMEJXWnFn?oc=5",
-        "pubDate": "2026-11-12T21:00:00+00:00",
-        "source": "西日本新聞me",
-        "teamLevel": "球団全般",
-        "players": [],
-        "categories": [
-            "球団・選手話題"
-        ]
-    },
-    {
         "id": "5f24a3ca56493610",
         "title": "広島・新井監督が楽天FA太田光に“正捕手確約”のプレゼント 「君に来てもらわないと優勝できない」|野球",
         "rawTitle": "広島・新井監督が楽天FA太田光に“正捕手確約”のプレゼント 「君に来てもらわないと優勝できない」|野球 - 日刊ゲンダイDIGITAL",
@@ -28,12 +15,38 @@
         ]
     },
     {
+        "id": "b0dc29e9c0ca8bd6",
+        "title": "[長崎県]「カープの中心選手に」 長崎国際大 皆吉選手が仮契約",
+        "rawTitle": "[長崎県]「カープの中心選手に」 長崎国際大 皆吉選手が仮契約 - 西日本新聞me",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE16VklIdGxfVmN5N016UGcyQjczVm5PaDhMMjd5Ri1oNUtheEtnajZUSHBuaDYtNGlDNHBtYk5JRFhKN1l4NUhyazUzOXNXNDFrMEJXWnFn?oc=5",
+        "pubDate": "2026-11-12T21:00:00+00:00",
+        "source": "西日本新聞me",
+        "teamLevel": "球団全般",
+        "players": [],
+        "categories": [
+            "球団・選手話題"
+        ]
+    },
+    {
         "id": "097ae1067a51391e",
         "title": "2027年度カープファンクラブ「赤組」先行入会受付開始! |広島東洋カープ公式サイト",
         "rawTitle": "2027年度カープファンクラブ「赤組」先行入会受付開始! |広島東洋カープ公式サイト - 広島東洋カープ公式サイト",
         "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE91TU0wWmV6TUhZV3dUMVpiVURNc3RXdDRPdFd5MzdLTmg0dWVSY09WekVaQnAyRHpKVm92elFlTk5VVVJDNTFVd3ZCVFprZ3Z0bnhMNFd4c3dYNmZyck1hOVNkeFdUVGxXQ0wzSlVZS0VDQQ?oc=5",
         "pubDate": "2026-11-12T13:58:26+00:00",
         "source": "広島東洋カープ公式サイト",
+        "teamLevel": "球団全般",
+        "players": [],
+        "categories": [
+            "球団・選手話題"
+        ]
+    },
+    {
+        "id": "af64853531d7cf1b",
+        "title": "カープ工藤泰己「2年目は成績にこだわりたい」100万円増で更改【一問一答】",
+        "rawTitle": "カープ工藤泰己「2年目は成績にこだわりたい」100万円増で更改【一問一答】 - 中国新聞デジタル",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5Wd3c4NjRVeVQ2NjRRUGVLSG1ILUg0TXdpVUs1QVlkTTAwZjFPMGNuVksyWWNfTXlOTkw1aDF6bXlIaWF1Y2pBQW1WTmttY0g0ZGIxaHZqQzRmZw?oc=5",
+        "pubDate": "2026-11-12T12:43:15+00:00",
+        "source": "中国新聞デジタル",
         "teamLevel": "球団全般",
         "players": [],
         "categories": [
@@ -223,6 +236,19 @@
         ]
     },
     {
+        "id": "a0fc2c54699d3866",
+        "title": "11月11日(水)",
+        "rawTitle": "11月11日(水) - 広島東洋カープ公式サイト",
+        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1qd0lzaEhWbkxqQXBkUzRWVFFnUEdSYS1wOW1PbHBGZzZyMVpiM29BSUJyUk1Dc0NYZEpOeTY2WkdHRko3ZVBtQ2tjcHFuYUhkU1hkSjRGQTBrVVU?oc=5",
+        "pubDate": "2026-11-12T09:14:04+00:00",
+        "source": "広島東洋カープ公式サイト",
+        "teamLevel": "球団全般",
+        "players": [],
+        "categories": [
+            "球団・選手話題"
+        ]
+    },
+    {
         "id": "2718a0818191e571",
         "title": "カープ、北広島町主催の野球教室にアカデミー出身練習生の派遣を発表(アスリートマガジンWEB)",
         "rawTitle": "カープ、北広島町主催の野球教室にアカデミー出身練習生の派遣を発表(アスリートマガジンWEB) - Yahoo!ニュース",
@@ -399,6 +425,21 @@
         "categories": [
             "契約・編成",
             "キャンプ・練習"
+        ]
+    },
+    {
+        "id": "ca3f7d25351098cb",
+        "title": "【広島】新井監督「カープの歴史上、初めての選手に」楽天FA太田光に交渉解禁初日猛アタック",
+        "rawTitle": "【広島】新井監督「カープの歴史上、初めての選手に」楽天FA太田光に交渉解禁初日猛アタック - 日刊スポーツ",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOMVNlR1pMNUxKamdfTnUxZ0YwdDJZVEZCeFpldHltRjdyLXE5Ujh2Nll4Z1piYkIzRjlBX3ktT2IzNmVDTzVWc3hYelN1OG0xZW5BU0tPbFU1dGJlQ2dJMWJQOFIwQ1RHQS1uWGhELTdhbHJYdWtKUVdwb3dvOWY1aE1NWHFyMjFLM1V1QXVycw?oc=5",
+        "pubDate": "2026-11-11T22:37:21+00:00",
+        "source": "日刊スポーツ",
+        "teamLevel": "球団全般",
+        "players": [
+            "新井貴浩"
+        ],
+        "categories": [
+            "契約・編成"
         ]
     },
     {
@@ -653,21 +694,6 @@
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9KRVUwSVhQZEVNMnZoTVlQVjUtLTE3WEJoeFFyRV83NkdJVmQ4N09IVVdJenR5LWR5N2JaNmhfN3VteDRvQVMtX3ZKdEI4NXRBQUQ4dU9TRFFHbHJTRUNQa3B6SFV5TW1WS0FadzlXcG9sMFUwN1UzbHFZenNTam8?oc=5",
         "pubDate": "2026-11-11T20:00:04+00:00",
         "source": "Yahoo!ニュース",
-        "teamLevel": "球団全般",
-        "players": [
-            "新井貴浩"
-        ],
-        "categories": [
-            "契約・編成"
-        ]
-    },
-    {
-        "id": "5dd90e337cb512d6",
-        "title": "【広島】新井監督「カープの歴史上、初めての選手に」楽天FA太田光に交渉解禁初日猛アタック",
-        "rawTitle": "【広島】新井監督「カープの歴史上、初めての選手に」楽天FA太田光に交渉解禁初日猛アタック - 日刊スポーツ",
-        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE41QkZBLXBTa1hlUVhfMTdsZGtuaEtBdzhEQkZqUDlrU3FPODNaazBtbGcwLThXc2hWWVZiOWFZZ0tjbDdnMWJ0Q0luWkFqMkFqdnZUSVpEM2Y5VlNnVF9vdlc4eHJzLVkzUDNrRExrXzDSAXhBVV95cUxPaWNOcEVlMm9ZRThNT1hLTllvSEJOcV9ucFEtREtQOXdncFV5ejVaVDJOcGZjdFluRHhGS09ERF9oQVhBRjJlMkhpNGRIWmtuTTRBVGFLNUI4YXpJclZfUk11MTBrNGxad3RicDlhQVJjR3JOYXBaaFA?oc=5",
-        "pubDate": "2026-11-11T20:00:00+00:00",
-        "source": "日刊スポーツ",
         "teamLevel": "球団全般",
         "players": [
             "新井貴浩"
@@ -1417,36 +1443,6 @@
         ],
         "categories": [
             "試合・戦評"
-        ]
-    },
-    {
-        "id": "0926bc8a73d1d911",
-        "title": "《トライアウト不参加》疑惑晴れぬ小園海斗がぶつかる「甘くない現実」、獲得狙う球団側の“特大リスク”も (週刊女性PRIME)",
-        "rawTitle": "《トライアウト不参加》疑惑晴れぬ小園海斗がぶつかる「甘くない現実」、獲得狙う球団側の“特大リスク”も (週刊女性PRIME) - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOa1BrblVzUXZodHhvdU1rN2dXU080eDZLd3RGU3RqTmI3VjZfVWtXeGxNQXhSOVktRzJYallReDFMMlpoS1hrOTh4X0FGelJPZ2FLc2d3aEluNE50UnZfN2FLNFZsVWFLYzc2THNoSDBPU05nWDNGYThPQl92Y2lQREJtM0lReDVBRk9aZ0Fn?oc=5",
-        "pubDate": "2026-11-11T02:30:36+00:00",
-        "source": "Yahoo!ニュース",
-        "teamLevel": "球団全般",
-        "players": [
-            "小園海斗"
-        ],
-        "categories": [
-            "ドラフト・新戦力"
-        ]
-    },
-    {
-        "id": "7ef3d8d78f0c7330",
-        "title": "トライアウト不参加》疑惑晴れぬ小園海斗がぶつかる「甘くない現実」、獲得狙う球団側の“特大リスク”も(週刊女性PRIME",
-        "rawTitle": "トライアウト不参加》疑惑晴れぬ小園海斗がぶつかる「甘くない現実」、獲得狙う球団側の“特大リスク”も(週刊女性PRIME - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5rSjNFREpxV2tsMXM1RHJkQk1mWGh3MDNXOVRPWGJmUGNSUWxSdnhnVmlrTFVTQUJCdWFYWmN3eHVzOFZoaTNJbk80eTYzbjJaRFVsZ0VoalpEWkRuRlBoYjYwa0dIYUtYRm5lTlp2MnpnUWtsNWpmWjl1NkFkYjQ?oc=5",
-        "pubDate": "2026-11-11T02:30:36+00:00",
-        "source": "Yahoo!ニュース",
-        "teamLevel": "球団全般",
-        "players": [
-            "小園海斗"
-        ],
-        "categories": [
-            "ドラフト・新戦力"
         ]
     }
 ]
